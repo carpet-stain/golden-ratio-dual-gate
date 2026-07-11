@@ -27,22 +27,44 @@ weighting, no gold, no momentum, no dynamic de-lever mechanism.
 
 ## What's largely redundant in role (not instrument)
 
+- **Small cap value (VBR)** — AVUV already provides this (30% of the
+  current book). Missed in the first pass at this doc; corrected here.
 - **Managed futures (DBMF)** — RSST already provides a MF overlay.
 - **LT Treasuries (TLT)** — RSSB already provides blended 2-30yr
   Treasury-futures duration, though not identical to TLT's pure long
   duration specifically.
 
-Net: the honest diversification benefit is narrower than "five new
-uncorrelated assets" — closer to "gold + momentum + a dynamic leverage
-dial," layered on exposure the book substantially already carries via the
-MF/Treasury legs.
+So three of the sleeve's five risk-off components overlap in role with
+existing holdings (Small Value, MF, Treasuries) — only Gold and Large Cap
+Momentum are genuinely new. Net: the honest diversification benefit is
+narrower than "five new uncorrelated assets" — closer to "gold + momentum
++ a dynamic leverage dial," layered on exposure the book substantially
+already carries via the AVUV/RSST/RSSB legs.
 
 ## Decision (2026-07-11)
 
-- **Funding**: mixed — a partial carve-out to establish a starting
-  position, then grown via new contributions (DCA) rather than continuing
-  to trim existing sleeves indefinitely.
-- **Target size**: 15-25% of total investable portfolio.
+- **Funding**: mixed — a partial carve-out now to establish a real
+  starting position, then grown toward the top of the target band via new
+  contributions (DCA) rather than continuing to trim existing holdings.
+- **Target size**: 15-25% of total investable portfolio. Carve out to the
+  **low end (~15%) now**; the rest of the band is filled by DCA over time.
+- **Carve-out source**: AVUV + RSST + RSSB, proportional to their current
+  weight (30/20/20 → 43%/29%/29% of the carve-out amount). AVDV, AVEE,
+  AVNV are left untouched — they're the only positions with zero overlap
+  with the new sleeve.
+
+  Concretely, a 15%-of-portfolio carve-out looks like:
+
+  | Ticker | Before | Trim | After |
+  |---|---|---|---|
+  | AVUV | 30% | -6.4% | 23.6% |
+  | RSST | 20% | -4.3% | 15.7% |
+  | RSSB | 20% | -4.3% | 15.7% |
+  | AVDV | 10% | — | 10% |
+  | AVEE | 10% | — | 10% |
+  | AVNV | 10% | — | 10% |
+  | golden-ratio-dual-gate | 0% | +15% | 15% |
+
 - **Rationale for the band**: the published 17% CAGR headline is
   optimistic — see `research-notes.md` for why (thin/concentrated
   TIP-filter edge, pre-2000 SPMOSIM/DBMFSIM backfill risk). At 15-25%, a
@@ -50,15 +72,15 @@ MF/Treasury legs.
   slippage) costs roughly 5.5-9.25 points of the total portfolio —
   material, but bounded, and proportionate to treating this as "a second
   real return driver," not "the new core."
-- **Not yet decided**: exact carve-out source/amount, and exact target
-  within the 15-25% band. Revisit once the backtester exists and we can
-  see real rolling-drawdown numbers instead of headline stats.
+- **Not yet decided**: the exact eventual target within 15-25%, and
+  whether growth toward it comes purely from new contributions or a second
+  smaller carve-out later. Revisit once the backtester exists and there
+  are real rolling-drawdown numbers instead of headline stats to size
+  against.
 
 ## Open questions for later
 
-- Does the carve-out come specifically from RSST/RSSB (since their
-  MF/Treasury legs are the most redundant with the new sleeve), or
-  proportionally from everything?
-- Should this be actively rebalanced against the rest of the portfolio
-  (i.e. the total book gets rebalanced back to a 15-25% sleeve / 75-85%
-  static-book split), or does it float?
+- Should this sleeve be actively rebalanced against the rest of the
+  portfolio (i.e. the total book gets rebalanced back to a target
+  sleeve / static-book split on a schedule), or does it float and only get
+  topped up via new contributions?
