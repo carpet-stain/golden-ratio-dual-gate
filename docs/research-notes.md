@@ -98,6 +98,12 @@ differently per leg:
   MF-dependent comparisons, or flag it clearly as lower-confidence in
   every report the backtester produces.
 
+  **Decision (2026-07-11):** accept 2019-present as the honest window for
+  now rather than pay for BTOP50/Barclay CTA. Revisit paying for it later
+  if the shorter window turns out to be a real limitation once we're
+  further into using this — noted here so it isn't forgotten as an
+  available option, not treated as permanently closed.
+
 ### 2b. SPY and TIP themselves don't reach 1988 either (found while building phase 1)
 
 - Not something the original thread raised, but surfaced immediately when
