@@ -83,6 +83,28 @@ differently per leg:
   lower-confidence in every report the backtester produces — don't quietly
   extrapolate or backfill it to make the series look complete.
 
+### 2b. SPY and TIP themselves don't reach 1988 either (found while building phase 1)
+
+- Not something the original thread raised, but surfaced immediately when
+  building the data layer: **SPY (ETF since Jan 1993) and TIP (ETF since
+  Dec 2003) don't cover the published 1988-present window on their own.**
+  The original post's backtest handled this for TIP by extending its
+  *signal* history with IEF pre-inception (mentioned in passing in
+  `strategy.md`'s source), but IEF itself only goes back to 2002 -- it
+  doesn't reach 1988 either. Reaching SPY/TIP's full window would need
+  index-level or synthetic proxy data for the *signal* series itself, on
+  top of the SPMO/DBMF asset-leg proxies already resolved above.
+- **Not yet resolved.** Phase 1's first working backtester (see
+  `src/golden_ratio_dual_gate/`) runs over whatever window real SPY/TIP
+  data actually covers -- currently 2019-05-09 onward, bounded by DBMF's
+  real inception since no SG Trend CSV has been supplied yet. It reports
+  this window explicitly rather than silently claiming 1988. Closing this
+  gap (probably via a synthetic S&P 500 total-return series and a
+  synthetic intermediate-Treasury total-return series, e.g. built from FRED
+  constant-maturity yield data) is a distinct, separate open question from
+  #2 above -- revisit once the SG Trend CSV is in place and the effective
+  window is bounded by this instead.
+
 ### 3. Dividend adjustment is mandatory (ApolloDan)
 
 - Un-adjusted price history makes TIP's 200 SMA break (false signals)

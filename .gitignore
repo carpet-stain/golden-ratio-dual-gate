@@ -11,6 +11,11 @@ build/
 .env
 .envrc.local
 
+# Manually-downloaded third-party index data (see
+# src/golden_ratio_dual_gate/data/managed_futures.py) -- not ours to
+# redistribute.
+data/external/*.csv
+
 # Editor / OS
 .DS_Store
 .vscode/

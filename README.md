@@ -5,10 +5,26 @@ portfolio, adapted from a strategy posted to r/LETFs.
 
 ## Status
 
-Docs-first. No code yet — see `docs/` for the strategy spec, sizing
-decision, and open research questions. Code starts once the spec is settled
-and the data-sourcing questions in `docs/research-notes.md` have real
-answers, not just a plan to find them.
+Phase 1 (backtester) is underway — see `docs/roadmap.md`. Strategy spec,
+sizing decision, and data-sourcing questions are settled; see `docs/` for
+all of it, and `docs/research-notes.md` for what's still open (notably: the
+backtest currently runs from 2019 onward, not the published 1988, pending
+pre-inception proxy data for the SPY/TIP signal series itself).
+
+### Running it
+
+```
+python3 -m venv .venv && source .venv/bin/activate
+pip install -e ".[dev]"
+python3 -m pytest                    # unit tests
+python3 -m golden_ratio_dual_gate    # fetch data, run the backtest, print the report
+```
+
+Optional: to extend the managed-futures leg's history back to 2000 (see
+`src/golden_ratio_dual_gate/data/managed_futures.py`), download the SG
+Trend Index by hand and save it as `data/external/sg_trend_index.csv`
+(columns: `date,value`). Without it, that leg is bounded by DBMF's real
+inception (May 2019).
 
 ## Docs
 
