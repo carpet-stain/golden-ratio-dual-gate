@@ -58,6 +58,31 @@ update as we backtest and, in later phases, collect live behavior.
   that DBMF's own live track record (inception 2019) is short and doesn't
   yet span a full regime cycle.
 
+**Decision (2026-07-11):** stay fully free, no paid data licenses. Resolved
+differently per leg:
+
+- **SPMO (momentum)**: neither the ETF (launched Oct 2015) nor the S&P 500
+  Momentum Index it tracks (launched Nov 2014) reaches back to 1988. S&P's
+  own hypothetical back-tested numbers only go to Dec 1994, and the
+  downloadable series requires a paid S&P Capital IQ license anyway — so
+  paying wouldn't even close the gap. Instead, build a synthetic long-only
+  momentum-tilted proxy from Ken French's data library (Market factor +
+  Mom factor, free, CSV, back to 1927, standard academic construction) for
+  the full 1988-present window, switching to real SPMO returns from Oct
+  2015 onward.
+- **DBMF (managed futures)**: DBi has no long backtest of its own — its
+  replication index only has a track record back to Dec 2015. No free
+  source reaches 1988. Free options top out at SG Trend Index (free,
+  published by Société Générale, live since 2000). Barclay BTOP50 (1987,
+  nearly the full window) and Barclay CTA Index (1980) would close the gap
+  but require a $150/yr subscription — ruled out to stay fully free.
+  **Result: 1988-2000 is an explicit, unmodeled gap for the managed-futures
+  leg.** Use SG Trend Index from 2000 onward as the free proxy, switching
+  to real DBMF returns from May 2019. For 1988-2000, either exclude that
+  window from any MF-dependent comparison or flag it clearly as
+  lower-confidence in every report the backtester produces — don't quietly
+  extrapolate or backfill it to make the series look complete.
+
 ### 3. Dividend adjustment is mandatory (ApolloDan)
 
 - Un-adjusted price history makes TIP's 200 SMA break (false signals)
