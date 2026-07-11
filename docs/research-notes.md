@@ -76,12 +76,27 @@ differently per leg:
   published by Société Générale, live since 2000). Barclay BTOP50 (1987,
   nearly the full window) and Barclay CTA Index (1980) would close the gap
   but require a $150/yr subscription — ruled out to stay fully free.
-  **Result: 1988-2000 is an explicit, unmodeled gap for the managed-futures
-  leg.** Use SG Trend Index from 2000 onward as the free proxy, switching
-  to real DBMF returns from May 2019. For 1988-2000, either exclude that
-  window from any MF-dependent comparison or flag it clearly as
-  lower-confidence in every report the backtester produces — don't quietly
-  extrapolate or backfill it to make the series look complete.
+
+  **Correction (2026-07-11, while building phase 1):** the "SG Trend Index
+  is free, published, since 2000" claim above was wrong in the way that
+  matters. Checked the actual page directly — it only shows an interactive
+  MTD/YTD summary figure, not a downloadable historical series. Full daily
+  history requires either SG's licensed Markets Analytics platform or
+  contacting their Capital Consulting team — same access tier as the
+  Barclay indices, not actually free. Checked several long-history
+  managed-futures mutual funds too (MLMIX, ASFYX, QMHIX) — none reach
+  earlier than 2010-2016. **Practical result: staying fully free means the
+  managed-futures leg is bounded by DBMF's real inception (May 2019), not
+  2000 as originally assumed.** That's a materially shorter usable window
+  than the "stay fully free" decision was made expecting. Revisit the
+  $150/yr paid option now that the real free/paid tradeoff is clearer, or
+  accept 2019-present as the honest window for anything depending on the
+  managed-futures leg.
+
+  Either way, don't quietly extrapolate or backfill the missing window to
+  make the series look more complete than it is — exclude it from
+  MF-dependent comparisons, or flag it clearly as lower-confidence in
+  every report the backtester produces.
 
 ### 2b. SPY and TIP themselves don't reach 1988 either (found while building phase 1)
 
@@ -94,16 +109,28 @@ differently per leg:
   doesn't reach 1988 either. Reaching SPY/TIP's full window would need
   index-level or synthetic proxy data for the *signal* series itself, on
   top of the SPMO/DBMF asset-leg proxies already resolved above.
-- **Not yet resolved.** Phase 1's first working backtester (see
-  `src/golden_ratio_dual_gate/`) runs over whatever window real SPY/TIP
-  data actually covers -- currently 2019-05-09 onward, bounded by DBMF's
-  real inception since no SG Trend CSV has been supplied yet. It reports
-  this window explicitly rather than silently claiming 1988. Closing this
-  gap (probably via a synthetic S&P 500 total-return series and a
-  synthetic intermediate-Treasury total-return series, e.g. built from FRED
-  constant-maturity yield data) is a distinct, separate open question from
-  #2 above -- revisit once the SG Trend CSV is in place and the effective
-  window is bounded by this instead.
+**Resolved (2026-07-11)**, more easily than expected:
+
+- **SPY signal**: `^SP500TR` (S&P 500 Total Return Index, via yfinance) has
+  real daily history back to **1988-01-04** -- the strategy's own published
+  start date, exactly. Dividend-inclusive, no construction needed. Used
+  directly for the whole window; no splice with the SPY ETF required.
+- **TIP signal**: no single free series reaches 1988, but three real
+  series chain cleanly: **VUSTX** (Vanguard Long-Term Treasury fund, real
+  NAV history since 1986-05-19) → **IEF** (real, since 2002-07-30) → real
+  **TIP** (since 2003-12-05). This mirrors the original post's own move of
+  substituting a nominal treasury proxy before TIP existed (they used IEF;
+  this extends the same idea one step further back with VUSTX). VUSTX is
+  long-duration (~17yr) versus TIP's intermediate ~7-8yr duration -- a real,
+  documented duration mismatch for the 1988-2002 segment specifically, not
+  a like-for-like substitute. Treat regime signals from that period with
+  that caveat in mind.
+- See `src/golden_ratio_dual_gate/data/signal_history.py`.
+
+This closes the signal-side gap independent of the SPMO/DBMF asset-leg
+proxies (#2 above). The backtest's *actual* remaining bound is now the
+managed-futures asset leg specifically (DBMF's real inception, absent a
+paid subscription) -- not the signal series.
 
 ### 3. Dividend adjustment is mandatory (ApolloDan)
 

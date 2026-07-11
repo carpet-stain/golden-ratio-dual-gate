@@ -2,12 +2,13 @@
 
 Usage: python -m golden_ratio_dual_gate
 
-Known limitation (not yet resolved -- see docs/research-notes.md): this
-runs over whatever window real SPY/TIP signal data actually covers, which
-is bounded by TIP's real inception (Dec 2003), not 1988. Reaching the
-published backtest's full 1988-present window needs pre-inception proxy
-data for the SPY/TIP *signal* series itself, on top of the SPMO/DBMF asset
-proxies already handled below -- that's a separate open question.
+The SPY/TIP signal itself now reaches back to 1988 (see
+data/signal_history.py, docs/research-notes.md #2b). The remaining bound
+on the backtest window is the managed-futures asset leg: without a
+manually-supplied SG Trend Index CSV (data/managed_futures.py), it's
+bounded by DBMF's real inception (May 2019), not 1988 or even 2000 -- see
+docs/research-notes.md #2 for why "stay fully free" turned out to deliver
+less than first assumed there.
 """
 from __future__ import annotations
 
@@ -19,16 +20,15 @@ from .backtest import TICKERS, run_backtest
 from .data.kenneth_french import fetch_momentum_proxy_returns
 from .data.managed_futures import load_sg_trend_returns
 from .data.prices import fetch_adjusted_close
+from .data.signal_history import fetch_spy_signal_price, fetch_tip_signal_price
 from .data.splice import splice_returns
 from .metrics import summary
 from .reports import spy_only_vs_dual_gate
 from .signals import compute_regime
 
-REAL_TICKERS = [*TICKERS, "SPY", "TIP"]
-
 
 def load_data() -> tuple[pd.DataFrame, pd.Series, pd.Series]:
-    prices = {ticker: fetch_adjusted_close(ticker) for ticker in REAL_TICKERS}
+    prices = {ticker: fetch_adjusted_close(ticker) for ticker in TICKERS}
     asset_returns = {ticker: prices[ticker].pct_change().dropna() for ticker in TICKERS}
 
     asset_returns["SPMO"] = splice_returns(
@@ -43,14 +43,18 @@ def load_data() -> tuple[pd.DataFrame, pd.Series, pd.Series]:
     asset_returns["DBMF"] = splice_returns(mf_proxy, asset_returns["DBMF"], "DBMF")
 
     returns = pd.DataFrame(asset_returns)[TICKERS].dropna()
-    return returns, prices["SPY"], prices["TIP"]
+
+    spy_price = fetch_spy_signal_price()
+    tip_price = fetch_tip_signal_price()
+    return returns, spy_price, tip_price
 
 
 def main() -> None:
     returns, spy_price, tip_price = load_data()
 
-    print(f"Sleeve data available from {returns.index.min().date()} onward.")
-    print("(Not 1988 -- see the module docstring and docs/research-notes.md.)\n")
+    print(f"SPY/TIP signal available from {tip_price.index.min().date()} onward.")
+    print(f"Sleeve asset data (the actual binding constraint) available from "
+          f"{returns.index.min().date()} onward -- see docs/research-notes.md #2.\n")
 
     regime = compute_regime(spy_price, tip_price)
     portfolio_returns = run_backtest(returns, regime)
