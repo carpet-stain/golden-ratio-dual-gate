@@ -2,6 +2,7 @@
 post got backwards on first draft (docs/research-notes.md #6), so a broken
 regime implementation fails loudly here rather than silently in a backtest.
 """
+
 from __future__ import annotations
 
 import pandas as pd

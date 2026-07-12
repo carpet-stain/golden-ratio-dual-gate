@@ -1,11 +1,14 @@
 """Real ticker price history via yfinance."""
+
 from __future__ import annotations
 
 import pandas as pd
 import yfinance as yf
 
 
-def fetch_adjusted_close(ticker: str, start: str | None = None, end: str | None = None) -> pd.Series:
+def fetch_adjusted_close(
+    ticker: str, start: str | None = None, end: str | None = None
+) -> pd.Series:
     """Daily adjusted-close price series for `ticker`, indexed by date.
 
     `auto_adjust=True` folds dividends/splits into the price directly -- the

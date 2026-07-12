@@ -1,6 +1,7 @@
 """Metrics tests -- hand-computable synthetic series so a correct
 implementation can be verified by arithmetic, not just plausibility.
 """
+
 from __future__ import annotations
 
 import numpy as np

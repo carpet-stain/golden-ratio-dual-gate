@@ -2,6 +2,10 @@
 name = "golden-ratio-dual-gate"
 version = "0.1.0"
 description = "SPY/TIP dual-gate trend-timed leveraged portfolio: backtest and research"
+readme = "README.md"
+authors = [
+    { name = "carpet-stain", email = "5483606+carpet-stain@users.noreply.github.com" },
+]
 requires-python = ">=3.11"
 dependencies = [
     "pandas>=2.2",
@@ -10,21 +14,23 @@ dependencies = [
     "yfinance>=0.2.40",
 ]
 
-[project.optional-dependencies]
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/golden_ratio_dual_gate"]
+
+[dependency-groups]
 dev = [
+    "pyright>=1.1",
     "pytest>=8.0",
     "ruff>=0.6",
 ]
-
-[build-system]
-requires = ["setuptools>=68"]
-build-backend = "setuptools.build_meta"
-
-[tool.setuptools.packages.find]
-where = ["src"]
 
 [tool.ruff]
 line-length = 100
 
 [tool.pytest.ini_options]
+addopts = ["-ra", "--strict-markers", "--strict-config"]
 testpaths = ["tests"]

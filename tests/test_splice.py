@@ -1,6 +1,7 @@
 """Splice tests -- confirm the real series takes over cleanly from its
 first date, with no overlap blending.
 """
+
 from __future__ import annotations
 
 import pandas as pd

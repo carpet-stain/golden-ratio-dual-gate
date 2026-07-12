@@ -18,6 +18,7 @@ stays an explicit, unmodeled gap for the managed-futures leg -- per the
 "stay fully free" decision in docs/research-notes.md, this is not silently
 backfilled with something else.
 """
+
 from __future__ import annotations
 
 from pathlib import Path

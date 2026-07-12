@@ -1,6 +1,7 @@
 """Performance metrics matching the published backtest's headline table
 (docs/strategy.md): CAGR, max drawdown, longest drawdown, Sharpe, Sortino.
 """
+
 from __future__ import annotations
 
 import numpy as np

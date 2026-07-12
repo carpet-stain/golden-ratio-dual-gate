@@ -6,6 +6,7 @@ table got the AND/OR direction backwards on first draft. Treat that as a
 standing reminder to verify this module against hand-checked scenarios
 (see tests/test_signals.py) rather than trust it by construction.
 """
+
 from __future__ import annotations
 
 import pandas as pd

@@ -2,6 +2,7 @@
 target weights, rebalancing quarterly or immediately on a regime flip, with
 a trading cost charged on realized turnover. See docs/strategy.md.
 """
+
 from __future__ import annotations
 
 import pandas as pd

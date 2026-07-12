@@ -5,6 +5,7 @@ being bounded by SPY's real 1993 or TIP's real 2003 inception.
 See docs/research-notes.md #2b -- a separate gap from the SPMO/DBMF
 asset-leg proxies, found while building phase 1.
 """
+
 from __future__ import annotations
 
 import pandas as pd

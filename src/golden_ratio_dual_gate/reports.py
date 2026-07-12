@@ -3,6 +3,7 @@ SPY-only vs. SPY+TIP decomposition ourselves rather than take the published
 thread's split on faith, and a leverage-inversion sanity check against the
 author's own finding (research-notes.md #5).
 """
+
 from __future__ import annotations
 
 import pandas as pd

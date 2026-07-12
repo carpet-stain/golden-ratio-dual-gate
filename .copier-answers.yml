@@ -1,0 +1,8 @@
+# Changes here will be overwritten by Copier; do not edit manually.
+_commit: 0f9970c1
+_src_path: /Users/bleppez/.config/dotfiles/python
+author_email: 5483606+carpet-stain@users.noreply.github.com
+author_name: carpet-stain
+description: 'SPY/TIP dual-gate trend-timed leveraged portfolio: backtest and research'
+package_name: golden_ratio_dual_gate
+project_name: golden-ratio-dual-gate
