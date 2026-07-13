@@ -1,4 +1,5 @@
 """Combine pre-inception proxy return series with real ticker returns."""
+
 from __future__ import annotations
 
 import pandas as pd

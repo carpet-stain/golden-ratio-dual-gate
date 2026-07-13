@@ -2,6 +2,7 @@
 target weights, rebalancing quarterly or immediately on a regime flip, with
 a trading cost charged on realized turnover. See docs/strategy.md.
 """
+
 from __future__ import annotations
 
 import pandas as pd
@@ -49,7 +50,7 @@ def run_backtest(returns: pd.DataFrame, regime: pd.Series) -> pd.Series:
         raise ValueError("no overlapping dates between returns and regime")
     returns = returns.loc[idx, TICKERS]
     regime = regime.loc[idx]
-    quarter_marks = _quarter_end_dates(idx)
+    quarter_marks = _quarter_end_dates(pd.DatetimeIndex(idx))
 
     weights = pd.Series(target_weights(regime.iloc[0]), index=TICKERS)
     prev_regime = regime.iloc[0]

@@ -5,6 +5,7 @@ Free, CSV, back to 1926. See docs/research-notes.md #2 for why this exists:
 neither SPMO nor the S&P 500 Momentum Index it tracks has usable history
 that far back, and a paid data license doesn't close the gap either.
 """
+
 from __future__ import annotations
 
 import io
@@ -15,8 +16,7 @@ import pandas as pd
 import requests
 
 _MOMENTUM_URL = (
-    "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/"
-    "F-F_Momentum_Factor_daily_CSV.zip"
+    "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/F-F_Momentum_Factor_daily_CSV.zip"
 )
 _FACTORS_URL = (
     "https://mba.tuck.dartmouth.edu/pages/faculty/ken.french/ftp/"

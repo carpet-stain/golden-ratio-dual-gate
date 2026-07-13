@@ -10,6 +10,7 @@ bounded by DBMF's real inception (May 2019), not 1988 or even 2000 -- see
 docs/research-notes.md #2 for why "stay fully free" turned out to deliver
 less than first assumed there.
 """
+
 from __future__ import annotations
 
 import sys
@@ -53,8 +54,10 @@ def main() -> None:
     returns, spy_price, tip_price = load_data()
 
     print(f"SPY/TIP signal available from {tip_price.index.min().date()} onward.")
-    print(f"Sleeve asset data (the actual binding constraint) available from "
-          f"{returns.index.min().date()} onward -- see docs/research-notes.md #2.\n")
+    print(
+        f"Sleeve asset data (the actual binding constraint) available from "
+        f"{returns.index.min().date()} onward -- see docs/research-notes.md #2.\n"
+    )
 
     regime = compute_regime(spy_price, tip_price)
     portfolio_returns = run_backtest(returns, regime)
