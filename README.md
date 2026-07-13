@@ -14,10 +14,9 @@ pre-inception proxy data for the SPY/TIP signal series itself).
 ### Running it
 
 ```
-python3 -m venv .venv && source .venv/bin/activate
-pip install -e ".[dev]"
-python3 -m pytest                    # unit tests
-python3 -m golden_ratio_dual_gate    # fetch data, run the backtest, print the report
+uv sync
+uv run pytest                              # unit tests
+uv run python -m golden_ratio_dual_gate    # fetch data, run the backtest, print the report
 ```
 
 Optional: to extend the managed-futures leg's history back to 2000 (see
