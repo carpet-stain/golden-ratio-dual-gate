@@ -4,6 +4,8 @@
 
 from __future__ import annotations
 
+from typing import cast
+
 import numpy as np
 import pandas as pd
 
@@ -11,7 +13,7 @@ TRADING_DAYS_PER_YEAR = 252
 
 
 def cagr(returns: pd.Series) -> float:
-    growth = (1 + returns).prod()
+    growth = cast(float, (1 + returns).prod())
     years = len(returns) / TRADING_DAYS_PER_YEAR
     return growth ** (1 / years) - 1
 

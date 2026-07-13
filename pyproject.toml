@@ -23,6 +23,7 @@ packages = ["src/golden_ratio_dual_gate"]
 
 [dependency-groups]
 dev = [
+    "pandas-stubs>=3.0.3.260530",
     "pyright>=1.1",
     "pytest>=8.0",
     "ruff>=0.6",

@@ -6,6 +6,8 @@ author's own finding (research-notes.md #5).
 
 from __future__ import annotations
 
+from typing import cast
+
 import pandas as pd
 
 from . import metrics
@@ -50,7 +52,9 @@ def spy_only_vs_dual_gate(
     ).T
 
     def _yearly(r: pd.Series) -> pd.Series:
-        return r.groupby(r.index.year).apply(lambda x: (1 + x).prod() - 1)
+        return r.groupby(pd.DatetimeIndex(r.index).year).apply(
+            lambda x: cast(float, (1 + x).prod()) - 1
+        )
 
     yearly = pd.DataFrame(
         {
