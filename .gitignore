@@ -20,3 +20,4 @@ data/external/*.csv
 .DS_Store
 .vscode/
 .idea/
+CLAUDE.md
