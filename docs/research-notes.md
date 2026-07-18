@@ -110,12 +110,12 @@ differently per leg:
   building the data layer: **SPY (ETF since Jan 1993) and TIP (ETF since
   Dec 2003) don't cover the published 1988-present window on their own.**
   The original post's backtest handled this for TIP by extending its
-  *signal* history with IEF pre-inception (mentioned in passing in
+  _signal_ history with IEF pre-inception (mentioned in passing in
   `strategy.md`'s source), but IEF itself only goes back to 2002 -- it
   doesn't reach 1988 either. Reaching SPY/TIP's full window would need
-  index-level or synthetic proxy data for the *signal* series itself, on
+  index-level or synthetic proxy data for the _signal_ series itself, on
   top of the SPMO/DBMF asset-leg proxies already resolved above.
-**Resolved (2026-07-11)**, more easily than expected:
+  **Resolved (2026-07-11)**, more easily than expected:
 
 - **SPY signal**: `^SP500TR` (S&P 500 Total Return Index, via yfinance) has
   real daily history back to **1988-01-04** -- the strategy's own published
@@ -134,7 +134,7 @@ differently per leg:
 - See `src/golden_ratio_dual_gate/data/signal_history.py`.
 
 This closes the signal-side gap independent of the SPMO/DBMF asset-leg
-proxies (#2 above). The backtest's *actual* remaining bound is now the
+proxies (#2 above). The backtest's _actual_ remaining bound is now the
 managed-futures asset leg specifically (DBMF's real inception, absent a
 paid subscription) -- not the signal series.
 
@@ -173,7 +173,7 @@ paid subscription) -- not the signal series.
   genuine asymmetry.
 - Not an open question, but worth re-confirming ourselves once the
   backtester exists, as a sanity check on data/timing correctness: if our
-  from-scratch backtester says leverage-inverted is *better*, something is
+  from-scratch backtester says leverage-inverted is _better_, something is
   wired backwards.
 
 ### 6. The AND/OR bug

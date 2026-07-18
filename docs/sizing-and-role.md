@@ -2,14 +2,14 @@
 
 ## Current portfolio (context)
 
-| Ticker | Weight | Role |
-|---|---|---|
-| AVUV | 30% | US Small Cap Value |
-| RSST | 20% | US equity (S&P) + managed-futures overlay, ~100%/100% notional each |
-| RSSB | 20% | Global equity + US Treasury futures (2-30yr), ~100%/100% notional each |
-| AVDV | 10% | Intl Small Cap Value |
-| AVEE | 10% | EM Equity |
-| AVNV | 10% | Intl (developed + EM) Value |
+| Ticker | Weight | Role                                                                   |
+| ------ | ------ | ---------------------------------------------------------------------- |
+| AVUV   | 30%    | US Small Cap Value                                                     |
+| RSST   | 20%    | US equity (S&P) + managed-futures overlay, ~100%/100% notional each    |
+| RSSB   | 20%    | Global equity + US Treasury futures (2-30yr), ~100%/100% notional each |
+| AVDV   | 10%    | Intl Small Cap Value                                                   |
+| AVEE   | 10%    | EM Equity                                                              |
+| AVNV   | 10%    | Intl (developed + EM) Value                                            |
 
 Decomposed: ~100% equity-beta notional + ~20% managed-futures notional (via
 RSST) + ~20% Treasury-futures notional (via RSSB, blended 2-30yr duration)
@@ -38,8 +38,9 @@ So three of the sleeve's five risk-off components overlap in role with
 existing holdings (Small Value, MF, Treasuries) — only Gold and Large Cap
 Momentum are genuinely new. Net: the honest diversification benefit is
 narrower than "five new uncorrelated assets" — closer to "gold + momentum
-+ a dynamic leverage dial," layered on exposure the book substantially
-already carries via the AVUV/RSST/RSSB legs.
+
+- a dynamic leverage dial," layered on exposure the book substantially
+  already carries via the AVUV/RSST/RSSB legs.
 
 ## Decision (2026-07-11)
 
@@ -55,15 +56,15 @@ already carries via the AVUV/RSST/RSSB legs.
 
   Concretely, a 15%-of-portfolio carve-out looks like:
 
-  | Ticker | Before | Trim | After |
-  |---|---|---|---|
-  | AVUV | 30% | -6.4% | 23.6% |
-  | RSST | 20% | -4.3% | 15.7% |
-  | RSSB | 20% | -4.3% | 15.7% |
-  | AVDV | 10% | — | 10% |
-  | AVEE | 10% | — | 10% |
-  | AVNV | 10% | — | 10% |
-  | golden-ratio-dual-gate | 0% | +15% | 15% |
+  | Ticker                 | Before | Trim  | After |
+  | ---------------------- | ------ | ----- | ----- |
+  | AVUV                   | 30%    | -6.4% | 23.6% |
+  | RSST                   | 20%    | -4.3% | 15.7% |
+  | RSSB                   | 20%    | -4.3% | 15.7% |
+  | AVDV                   | 10%    | —     | 10%   |
+  | AVEE                   | 10%    | —     | 10%   |
+  | AVNV                   | 10%    | —     | 10%   |
+  | golden-ratio-dual-gate | 0%     | +15%  | 15%   |
 
 - **Rationale for the band**: the published 17% CAGR headline is
   optimistic — see `research-notes.md` for why (thin/concentrated

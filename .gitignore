@@ -1,13 +1,16 @@
 # Python
 __pycache__/
-*.pyc
+*.py[oc]
 .venv/
 venv/
 *.egg-info/
 dist/
 build/
+wheels/
 
-# Env / secrets
+# Env / secrets. .envrc.local is replayed here rather than relying on the
+# git-flow base's own copy: this overlay's .gitignore replaces the base's on
+# layering (ADR-0020 in the template's source repo, project-starter-template).
 .env
 .envrc.local
 
