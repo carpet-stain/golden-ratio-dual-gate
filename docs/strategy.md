@@ -40,24 +40,24 @@ confirmed, not same-day.
 **Risk-off sleeve** (equal-weight, all five held at all times regardless of
 regime):
 
-| Role | Ticker (US) | Ticker (UK) | Weight |
-|---|---|---|---|
-| Large Cap Momentum | SPMO | IUMF | 20% |
-| Small Cap Value | VBR | USSC | 20% |
-| Managed Futures | DBMF | DBMG | 20% |
-| Gold | GLD | SGLN | 20% |
-| LT Treasuries | TLT | IDGA | 20% |
+| Role               | Ticker (US) | Ticker (UK) | Weight |
+| ------------------ | ----------- | ----------- | ------ |
+| Large Cap Momentum | SPMO        | IUMF        | 20%    |
+| Small Cap Value    | VBR         | USSC        | 20%    |
+| Managed Futures    | DBMF        | DBMG        | 20%    |
+| Gold               | GLD         | SGLN        | 20%    |
+| LT Treasuries      | TLT         | IDGA        | 20%    |
 
 **Risk-on allocation** (only when both filters confirm risk-on):
 
-| Role | Ticker (US) | Weight |
-|---|---|---|
-| 3x S&P 500 | UPRO | 50% |
-| Large Cap Momentum | SPMO | 10% |
-| Small Cap Value | VBR | 10% |
-| Managed Futures | DBMF | 10% |
-| Gold | GLD | 10% |
-| LT Treasuries | TLT | 10% |
+| Role               | Ticker (US) | Weight |
+| ------------------ | ----------- | ------ |
+| 3x S&P 500         | UPRO        | 50%    |
+| Large Cap Momentum | SPMO        | 10%    |
+| Small Cap Value    | VBR         | 10%    |
+| Managed Futures    | DBMF        | 10%    |
+| Gold               | GLD         | 10%    |
+| LT Treasuries      | TLT         | 10%    |
 
 Risk-on and risk-off share the same five diversifiers at different weights,
 by design — a regime flip only trades the UPRO leg, which limits whipsaw
@@ -84,19 +84,23 @@ reports monthly/yearly rebalancing doesn't materially change results.
   cheap.
 
 ## Backtest (as published, 1989–now, Testfolio, 0.1% trading cost, 1-day
+
 signal delay)
 
-| | CAGR | MDD | Longest DD | Sharpe | Sortino |
-|---|---|---|---|---|---|
-| S&P 500 | 11.5% | 55.1% | 6.6yr | 0.53 | 0.75 |
-| Strategy | 17.2% | 36.6% | 3.2yr | 0.75 | 1.05 |
+|          | CAGR  | MDD   | Longest DD | Sharpe | Sortino |
+| -------- | ----- | ----- | ---------- | ------ | ------- |
+| S&P 500  | 11.5% | 55.1% | 6.6yr      | 0.53   | 0.75    |
+| Strategy | 17.2% | 36.6% | 3.2yr      | 0.75   | 1.05    |
 
 ~4-6 trades/year. See `research-notes.md` for why these headline numbers
 should not be taken at face value.
 
 ## Source
 
-- [Original r/LETFs post](https://old.reddit.com/r/LETFs/comments/1upw0hu/17x_golden_ratio_inspired_portfolio_using_spy_tip/) — u/confettofetti
+- [Original r/LETFs post][letfs-post] — u/confettofetti
 - [Risk Parity Radio: Golden Ratio Portfolio](https://www.riskparityradio.com/portfolios)
 - [Portfolio Charts: Golden Ratio Portfolio](https://portfoliocharts.com/2025/03/15/beautiful-constants-and-the-golden-ratio-portfolio/)
-- u/ApolloDan's ["Adding TIP as a canary filter"](https://www.reddit.com/r/LETFs/comments/1ucnaxs/adding_tip_as_a_canary_filter/) post (the direct inspiration)
+- u/ApolloDan's ["Adding TIP as a canary filter"][apollodan-canary] post (the direct inspiration)
+
+[letfs-post]: https://old.reddit.com/r/LETFs/comments/1upw0hu/17x_golden_ratio_inspired_portfolio_using_spy_tip/
+[apollodan-canary]: https://www.reddit.com/r/LETFs/comments/1ucnaxs/adding_tip_as_a_canary_filter/
