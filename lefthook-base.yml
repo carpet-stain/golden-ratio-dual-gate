@@ -71,13 +71,12 @@ pre-commit:
 
     - name: comment-concision
       tags: [base]
+      # Blocking@2 (dotfiles ADR-0044); the script exempts yml by design, so
+      # the workflow/lefthook files dropped out of the glob with the flip.
       glob:
         - "scripts/*.sh"
-        - ".github/workflows/*.yml"
-        - ".github/workflows/*.yaml"
-        - "lefthook.yml"
-        - "lefthook-base.yml"
-        - "lefthook-lang.yml"
+        - "src/**/*.py"
+        - "tests/**/*.py"
       run: scripts/check-comment-concision.sh {staged_files}
 
     - name: justfile-format

@@ -28,9 +28,8 @@ def test_risk_off_if_tip_confirms_below_even_though_spy_confirms_above():
     spy = _series([100.0] * SEED_DAYS + [110.0] * 10)  # SPY alone: risk-on
     tip = _series([100.0] * SEED_DAYS + [98.0] * 10)  # TIP confirms below its band
     regime = compute_regime(spy, tip)
-    # OR-for-risk-off: TIP alone confirming below must force risk-off
-    # overall, regardless of SPY. This is exactly the direction the
-    # original post's table got backwards (AND instead of OR).
+    # OR-for-risk-off: TIP alone confirming below forces risk-off regardless
+    # of SPY — the direction the original post's table got backwards.
     assert not regime.tail(5).any()
 
 

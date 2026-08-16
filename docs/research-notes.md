@@ -70,6 +70,13 @@ differently per leg:
   Mom factor, free, CSV, back to 1927, standard academic construction) for
   the full 1988-present window, switching to real SPMO returns from Oct
   2015 onward.
+
+  The proxy's `MOMENTUM_TILT_LOADING = 0.5` (`data/kenneth_french.py`) is a
+  modeling assumption, not a derived constant: it stands for how much of
+  the long-short momentum factor's return a long-only, market-cap-relative
+  momentum tilt (like SPMO) plausibly captures. There is no single settled
+  value — sensitivity-test it once the backtester runs end to end.
+
 - **DBMF (managed futures)**: DBi has no long backtest of its own — its
   replication index only has a track record back to Dec 2015. No free
   source reaches 1988. Free options top out at SG Trend Index (free,
