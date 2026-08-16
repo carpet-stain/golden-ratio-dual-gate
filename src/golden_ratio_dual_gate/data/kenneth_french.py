@@ -23,11 +23,8 @@ _FACTORS_URL = (
     "F-F_Research_Data_Factors_daily_CSV.zip"
 )
 
-# How much of the long-short momentum factor's return a long-only,
-# market-cap-relative momentum tilt (like SPMO) plausibly captures. There is
-# no single settled value for this -- it's a documented modeling assumption,
-# not a derived constant. Flagged in docs/research-notes.md for
-# sensitivity-testing once the backtester is running end to end.
+# Modeling assumption, not a derived constant — sensitivity-test before
+# trusting long-window results; rationale in docs/research-notes.md.
 MOMENTUM_TILT_LOADING = 0.5
 
 _DATE_ROW = re.compile(r"^\d{8},")

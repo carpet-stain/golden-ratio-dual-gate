@@ -35,9 +35,8 @@ def test_empty_real_series_falls_back_to_proxy_entirely():
 
 
 def test_empty_proxy_falls_back_to_real_entirely():
-    # This is the "no manual CSV supplied" case for the managed-futures
-    # leg (docs/research-notes.md #2) -- proxy is an empty, non-datetime
-    # series, and splicing must not crash trying to compare its index.
+    # "No manual CSV" managed-futures case (docs/research-notes.md #2): an
+    # empty, non-datetime proxy must not crash the index comparison.
     dates_real = pd.bdate_range("2019-05-01", periods=5)
     proxy = pd.Series(dtype=float)
     real = pd.Series([0.02] * 5, index=dates_real)
