@@ -2,6 +2,10 @@
 # Blocking signpost cap, not a length nudge — pure adoption of the canonical
 # mechanism: carpet-stain/dotfiles ADR-0044 (supersedes its ADR-0031 nudge).
 # THRESHOLD_LINES is the max allowed, so the comparison is `>`, not `>=`.
+#
+# comment_prefix_for extends PST's rung-2 template (scripts/*.sh + yml only)
+# with this repo's own language surface — see golden-ratio-dual-gate#10.
+# owned: true in .pst-sync.yml; PST's upstream version doesn't cover these.
 set -uo pipefail
 
 THRESHOLD_LINES=2
