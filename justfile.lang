@@ -1,5 +1,6 @@
 # Python overlay verbs — picked up by the base justfile's `import?`. Base
-# verbs (lint, adr) live in justfile.base; never add them here.
+# verbs (lint, adr, format, token-cost) live in justfile.base; never add
+# them here.
 
 # Run the test suite.
 test *args:
@@ -9,6 +10,7 @@ test *args:
 typecheck:
     uv run pyright
 
-# Format Python sources with ruff.
-format *args:
+# Format Python sources with ruff — named `fmt`, not `format`: justfile.base
+# now owns that recipe name for markdown (pst#149).
+fmt *args:
     uv run ruff format {{ args }}

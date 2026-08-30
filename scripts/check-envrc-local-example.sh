@@ -12,8 +12,8 @@ set -uo pipefail
 example_file=".envrc.local.example"
 real_file=".envrc.local"
 
-# Keep the `export VAR=` prefix so name/comment drift is still caught.
-# [A-Z0-9_], not [A-Z_]: an unstripped digit-named var would leak to stderr.
+# [A-Z0-9_], not [A-Z_]: excluding digits would let a var like R2_... skip
+# stripping, and the diff below prints unstripped values to stderr.
 strip_values() { sed -E 's/^(export [A-Z0-9_]+=).*/\1/' "$1"; }
 
 if grep -E '^export [A-Z0-9_]+=.+' "$example_file" >/dev/null; then
